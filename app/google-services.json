@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "785044150428",
+    "project_id": "webview-movie",
+    "storage_bucket": "webview-movie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785044150428:android:3f0cf364f7a0564340b559",
+        "android_client_info": {
+          "package_name": "vn.com.enterdev.moviewebview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "785044150428-cugonufk7g163ha7r5uc0ui09moj620l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vn.com.enterdev.moviewebview",
+            "certificate_hash": "e2b79b949f168c4ec07ab15c95f44fdc710a8234"
+          }
+        },
+        {
+          "client_id": "785044150428-s4os9tok4jhrd7p5qtf708ke1j2qtucf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtIudN_CembVhRN5WAdYrOItJK6MxICqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "785044150428-s4os9tok4jhrd7p5qtf708ke1j2qtucf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
