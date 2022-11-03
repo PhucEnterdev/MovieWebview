@@ -8,12 +8,15 @@ import android.os.Looper
 import android.view.Window
 import vn.com.enterdev.moviewebview.R
 import vn.com.enterdev.moviewebview.databinding.ActivityMainBinding
+import vn.com.enterdev.moviewebview.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         /**
          * hidden action bar
