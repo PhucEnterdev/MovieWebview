@@ -5,13 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.HomeFragment">
-    <androidx.appcompat.widget.Toolbar
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/toolbar_home"
-        app:menu="@menu/menu_toolbar_home"
-        android:background="@color/bg_bottom_nav"
+        android:id="@+id/rcv_home"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"/>
+        android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
