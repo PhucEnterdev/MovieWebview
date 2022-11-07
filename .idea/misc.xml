@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/drawable/bg_screen_splash.xml" value="0.179" />
+        <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/drawable/custom_searchview.xml" value="0.143" />
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/drawable/custome_bg_bottom_nav.xml" value="0.143" />
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/drawable/ic_launcher_background.xml" value="0.179" />
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/drawable/ic_search.xml" value="0.143" />
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/layout/activity_main2.xml" value="0.25" />
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/layout/activity_web_view.xml" value="0.25" />
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/layout/fragment_favorite.xml" value="0.25" />
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/layout/fragment_history.xml" value="0.25" />
         <entry key="..\:/EnterDev/MovieWebview/app/src/main/res/layout/fragment_home.xml" value="0.25" />

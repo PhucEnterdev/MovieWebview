@@ -1,5 +1,6 @@
 package vn.com.enterdev.moviewebview.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +12,26 @@ import com.bumptech.glide.Glide
 import vn.com.enterdev.moviewebview.R
 import vn.com.enterdev.moviewebview.model.Movie
 
-class MovieHomeAdapter(private val fragment: Fragment): RecyclerView.Adapter<MovieHomeAdapter.MovieHomeViewHolder>() {
+class MovieHomeAdapter(private val fragment: Fragment,
+                       private val onClickListener: OnClickListener):
+    RecyclerView.Adapter<MovieHomeAdapter.MovieHomeViewHolder>(){
     private var mListMovie: List<Movie> = ArrayList()
+
+    // interface click item in recyclerview
+    interface OnClickListener{
+        fun onItemClick(position: Int)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<Movie>){
         this.mListMovie = list
-        notifyDataSetChanged()
+        this.notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFilterList(listItem: List<Movie>){
+        this.mListMovie = listItem
+        this.notifyDataSetChanged()
     }
     class MovieHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgMovie: ImageView = itemView.findViewById(R.id.img_movie)
@@ -30,6 +46,9 @@ class MovieHomeAdapter(private val fragment: Fragment): RecyclerView.Adapter<Mov
         val movie = mListMovie[position]
         Glide.with(fragment).load(movie.image).into(holder.imgMovie)
         holder.tvTitle.text = movie.title
+        holder.itemView.setOnClickListener {
+            onClickListener.onItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int {
