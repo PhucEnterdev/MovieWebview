@@ -19,6 +19,8 @@ class WebViewActivity : AppCompatActivity() {
 
         // block not allow to run by chrome
         binding.webViewMovie.webViewClient = WebViewClient()
+        binding.webViewMovie.settings.builtInZoomControls = true
+        binding.webViewMovie.settings.allowContentAccess = true
         binding.webViewMovie.apply {
             loadUrl(url!!)
             settings.javaScriptEnabled = true

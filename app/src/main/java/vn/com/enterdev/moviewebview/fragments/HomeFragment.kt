@@ -20,6 +20,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var movieHomeAdapter: MovieHomeAdapter
     private lateinit var mListMovie: List<Movie>
+    private lateinit var tempList: ArrayList<Movie>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,12 +28,17 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        mListMovie = getListMovie()
+        tempList = arrayListOf()
+
         /** fragment -> activity
          * and put url to WebviewActivity*/
         putDataDisPlayWebView()
 
-        // init view
-        initUI()
+        movieHomeAdapter.setData(mListMovie)
+        val gridLayoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rcvHome.layoutManager = gridLayoutManager
+        binding.rcvHome.adapter = movieHomeAdapter
 
         // use seachview to filter by title
         searchView()
@@ -42,7 +48,7 @@ class HomeFragment : Fragment() {
 
     private fun searchView() {
         binding.searchHome.clearFocus()
-        binding.searchHome.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        binding.searchHome.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -55,37 +61,35 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun initUI() {
-        mListMovie = getListMovie()
-        movieHomeAdapter.setData(mListMovie)
-        val gridLayoutManager = GridLayoutManager(requireContext(), 2)
-        binding.rcvHome.layoutManager = gridLayoutManager
-        binding.rcvHome.adapter = movieHomeAdapter
-    }
 
     private fun putDataDisPlayWebView() {
-        movieHomeAdapter = MovieHomeAdapter(this, object : MovieHomeAdapter.OnClickListener{
+        movieHomeAdapter = MovieHomeAdapter(this, object : MovieHomeAdapter.OnClickListener {
             override fun onItemClick(position: Int) {
                 val intent = Intent(this@HomeFragment.context, WebViewActivity::class.java)
-                intent.putExtra(Constants.KEY_URL_MOVIE,mListMovie[position].url)
+                intent.putExtra(Constants.KEY_URL_MOVIE, movieHomeAdapter.getData()[position].url)
                 startActivity(intent)
             }
         })
     }
 
     // Filter list movie by title
+    @SuppressLint("NotifyDataSetChanged")
     private fun filterList(newText: String?) {
-        val tempList: ArrayList<Movie> = arrayListOf()
-        for (movie in mListMovie){
-            if (movie.title!!.toString().lowercase().contains(newText!!.lowercase())){
+        tempList = arrayListOf()
+        for (movie in mListMovie) {
+            if (movie.title!!.toString().lowercase().contains(newText!!.lowercase())) {
                 tempList.add(movie)
             }
         }
 
-        if (tempList.isEmpty()){
+        if (tempList.isEmpty()) {
             movieHomeAdapter.setData(mListMovie)
-        }else{
+            movieHomeAdapter.notifyDataSetChanged()
+            tempList = mListMovie as ArrayList<Movie>
+        } else {
             movieHomeAdapter.setFilterList(tempList)
+            movieHomeAdapter.notifyDataSetChanged()
+            tempList = mListMovie as ArrayList<Movie>
         }
     }
 
@@ -94,12 +98,13 @@ class HomeFragment : Fragment() {
     private fun getListMovie(): List<Movie> {
         val list: ArrayList<Movie> = ArrayList()
         val firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance()
-        val databaseReference: DatabaseReference = firebaseDatabase.getReference(Constants.KEY_OBJ_MOVIE)
-        databaseReference.addValueEventListener(object : ValueEventListener{
+        val databaseReference: DatabaseReference =
+            firebaseDatabase.getReference(Constants.KEY_OBJ_MOVIE)
+        databaseReference.addValueEventListener(object : ValueEventListener {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
                 list.clear()
-                for (snap in snapshot.children){
+                for (snap in snapshot.children) {
                     val movie: Movie = snap.getValue(Movie::class.java)!!
                     list.add(movie)
                 }

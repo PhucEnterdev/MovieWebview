@@ -33,6 +33,11 @@ class MovieHomeAdapter(private val fragment: Fragment,
         this.mListMovie = listItem
         this.notifyDataSetChanged()
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun getData():List<Movie>{
+        return this.mListMovie
+    }
     class MovieHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgMovie: ImageView = itemView.findViewById(R.id.img_movie)
         val tvTitle: TextView = itemView.findViewById(R.id.tv_title)
